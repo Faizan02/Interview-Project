@@ -2,8 +2,8 @@
 
 Core iOS development fundamentals.
 
- ●  Foundation\n
- ●  UIKit
+ ●  Foundation
+ \n●  UIKit
  ●  Autolayout
  ●  Caching
  ●  Custom Cells
