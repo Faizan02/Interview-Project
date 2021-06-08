@@ -21,7 +21,6 @@ class ViewController: UIViewController {
         viewModel.fetchFlickerData()
     }
     
-    
     //MARK:- UI
     func setupTableView(){
         collectionView.delegate=self
@@ -47,6 +46,7 @@ extension ViewController{
     func showProgress(status: Bool){
         progress.isHidden = !status
     }
+    
     func showAlert(title:String,message:String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -84,8 +84,15 @@ extension ViewController: UICollectionViewDelegate{
 // MARK:- Collection View Delegate Flow Layout
 extension ViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.bounds.width/2 - 10
+        var numberOfCells:CGFloat = 2
+        var spacingValue:CGFloat = 10
+        if UIDevice.current.orientation.isLandscape{
+            numberOfCells = 4
+            spacingValue = 15
+        }
+        let width = collectionView.bounds.width/numberOfCells - spacingValue
         let height = width
+        print("size: \(collectionView.bounds.width) \(width) \(height)")
         return .init(width: width, height: height)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
